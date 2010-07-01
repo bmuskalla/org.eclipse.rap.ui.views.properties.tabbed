@@ -6,7 +6,7 @@ Bundle-Version: 3.2.1.qualifier
 Bundle-Activator: org.eclipse.ui.examples.views.properties.tabbed.article.Activator
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.eclipse.rap.ui,
  org.eclipse.core.runtime,
- org.eclipse.ui.views.properties.tabbed
+ org.eclipse.rap.ui.views.properties.tabbed
 Eclipse-LazyStart: true
