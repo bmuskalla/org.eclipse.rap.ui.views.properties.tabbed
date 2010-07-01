@@ -13,24 +13,24 @@ package org.eclipse.ui.internal.views.properties.tabbed.view;
 
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.accessibility.ACC;
-import org.eclipse.swt.accessibility.Accessible;
-import org.eclipse.swt.accessibility.AccessibleAdapter;
-import org.eclipse.swt.accessibility.AccessibleControlAdapter;
-import org.eclipse.swt.accessibility.AccessibleControlEvent;
-import org.eclipse.swt.accessibility.AccessibleEvent;
+//import org.eclipse.swt.accessibility.ACC;
+//import org.eclipse.swt.accessibility.Accessible;
+//import org.eclipse.swt.accessibility.AccessibleAdapter;
+//import org.eclipse.swt.accessibility.AccessibleControlAdapter;
+//import org.eclipse.swt.accessibility.AccessibleControlEvent;
+//import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseMoveListener;
-import org.eclipse.swt.events.MouseTrackAdapter;
+//import org.eclipse.swt.events.MouseMoveListener;
+//import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
-import org.eclipse.swt.events.TraverseEvent;
-import org.eclipse.swt.events.TraverseListener;
+//import org.eclipse.swt.events.TraverseEvent;
+//import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontMetrics;
 import org.eclipse.swt.graphics.GC;
@@ -44,7 +44,7 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
+//import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.internal.views.properties.tabbed.l10n.TabbedPropertyMessages;
 import org.eclipse.ui.views.properties.tabbed.ITabItem;
@@ -168,22 +168,22 @@ public class TabbedPropertyList
 					}
 				}
 			});
-			addMouseMoveListener(new MouseMoveListener() {
-
-				public void mouseMove(MouseEvent e) {
-					if (!hover) {
-						hover = true;
-						redraw();
-					}
-				}
-			});
-			addMouseTrackListener(new MouseTrackAdapter() {
-
-				public void mouseExit(MouseEvent e) {
-					hover = false;
-					redraw();
-				}
-			});
+//			addMouseMoveListener(new MouseMoveListener() {
+//
+//				public void mouseMove(MouseEvent e) {
+//					if (!hover) {
+//						hover = true;
+//						redraw();
+//					}
+//				}
+//			});
+//			addMouseTrackListener(new MouseTrackAdapter() {
+//
+//				public void mouseExit(MouseEvent e) {
+//					hover = false;
+//					redraw();
+//				}
+//			});
 		}
 
 		/**
@@ -514,27 +514,27 @@ public class TabbedPropertyList
 				computeTopAndBottomTab();
 			}
 		});
-		this.addTraverseListener(new TraverseListener() {
-
-			public void keyTraversed(TraverseEvent e) {
-				if (e.detail == SWT.TRAVERSE_ARROW_PREVIOUS
-					|| e.detail == SWT.TRAVERSE_ARROW_NEXT) {
-					int nMax = elements.length - 1;
-					int nCurrent = getSelectionIndex();
-					if (e.detail == SWT.TRAVERSE_ARROW_PREVIOUS) {
-						nCurrent -= 1;
-						nCurrent = Math.max(0, nCurrent);
-					} else if (e.detail == SWT.TRAVERSE_ARROW_NEXT) {
-						nCurrent += 1;
-						nCurrent = Math.min(nCurrent, nMax);
-					}
-					select(nCurrent);
-					redraw();
-				} else {
-					e.doit = true;
-				}
-			}
-		});
+//		this.addTraverseListener(new TraverseListener() {
+//
+//			public void keyTraversed(TraverseEvent e) {
+//				if (e.detail == SWT.TRAVERSE_ARROW_PREVIOUS
+//					|| e.detail == SWT.TRAVERSE_ARROW_NEXT) {
+//					int nMax = elements.length - 1;
+//					int nCurrent = getSelectionIndex();
+//					if (e.detail == SWT.TRAVERSE_ARROW_PREVIOUS) {
+//						nCurrent -= 1;
+//						nCurrent = Math.max(0, nCurrent);
+//					} else if (e.detail == SWT.TRAVERSE_ARROW_NEXT) {
+//						nCurrent += 1;
+//						nCurrent = Math.min(nCurrent, nMax);
+//					}
+//					select(nCurrent);
+//					redraw();
+//				} else {
+//					e.doit = true;
+//				}
+//			}
+//		});
 	}
 
 	/**
@@ -973,73 +973,73 @@ public class TabbedPropertyList
 	 * Initialize the accessibility adapter.
 	 */
 	private void initAccessible() {
-		final Accessible accessible = getAccessible();
-		accessible.addAccessibleListener(new AccessibleAdapter() {
-
-			public void getName(AccessibleEvent e) {
-				if (getSelectionIndex() != NONE) {
-					e.result = elements[getSelectionIndex()].getTabItem()
-							.getText();
-				}
-			}
-
-			public void getHelp(AccessibleEvent e) {
-				if (getSelectionIndex() != NONE) {
-					e.result = elements[getSelectionIndex()].getTabItem()
-							.getText();
-				}
-			}
-		});
-
-		accessible.addAccessibleControlListener(new AccessibleControlAdapter() {
-
-			public void getChildAtPoint(AccessibleControlEvent e) {
-				Point pt = toControl(new Point(e.x, e.y));
-				e.childID = (getBounds().contains(pt)) ? ACC.CHILDID_SELF
-					: ACC.CHILDID_NONE;
-			}
-
-			public void getLocation(AccessibleControlEvent e) {
-				if (getSelectionIndex() != NONE) {
-					Rectangle location = elements[getSelectionIndex()]
-						.getBounds();
-					Point pt = toDisplay(new Point(location.x, location.y));
-					e.x = pt.x;
-					e.y = pt.y;
-					e.width = location.width;
-					e.height = location.height;
-				}
-			}
-
-			public void getChildCount(AccessibleControlEvent e) {
-				e.detail = 0;
-			}
-
-			public void getRole(AccessibleControlEvent e) {
-				e.detail = ACC.ROLE_TABITEM;
-			}
-
-			public void getState(AccessibleControlEvent e) {
-				e.detail = ACC.STATE_NORMAL | ACC.STATE_SELECTABLE
-					| ACC.STATE_SELECTED | ACC.STATE_FOCUSED
-					| ACC.STATE_FOCUSABLE;
-			}
-		});
-
-		addListener(SWT.Selection, new Listener() {
-
-			public void handleEvent(Event event) {
-				if (isFocusControl()) {
-					accessible.setFocus(ACC.CHILDID_SELF);
-				}
-			}
-		});
-
-		addListener(SWT.FocusIn, new Listener() {
-
-			public void handleEvent(Event event) {
-				accessible.setFocus(ACC.CHILDID_SELF);
-			}
-		});
+//		final Accessible accessible = getAccessible();
+//		accessible.addAccessibleListener(new AccessibleAdapter() {
+//
+//			public void getName(AccessibleEvent e) {
+//				if (getSelectionIndex() != NONE) {
+//					e.result = elements[getSelectionIndex()].getTabItem()
+//							.getText();
+//				}
+//			}
+//
+//			public void getHelp(AccessibleEvent e) {
+//				if (getSelectionIndex() != NONE) {
+//					e.result = elements[getSelectionIndex()].getTabItem()
+//							.getText();
+//				}
+//			}
+//		});
+//
+//		accessible.addAccessibleControlListener(new AccessibleControlAdapter() {
+//
+//			public void getChildAtPoint(AccessibleControlEvent e) {
+//				Point pt = toControl(new Point(e.x, e.y));
+//				e.childID = (getBounds().contains(pt)) ? ACC.CHILDID_SELF
+//					: ACC.CHILDID_NONE;
+//			}
+//
+//			public void getLocation(AccessibleControlEvent e) {
+//				if (getSelectionIndex() != NONE) {
+//					Rectangle location = elements[getSelectionIndex()]
+//						.getBounds();
+//					Point pt = toDisplay(new Point(location.x, location.y));
+//					e.x = pt.x;
+//					e.y = pt.y;
+//					e.width = location.width;
+//					e.height = location.height;
+//				}
+//			}
+//
+//			public void getChildCount(AccessibleControlEvent e) {
+//				e.detail = 0;
+//			}
+//
+//			public void getRole(AccessibleControlEvent e) {
+//				e.detail = ACC.ROLE_TABITEM;
+//			}
+//
+//			public void getState(AccessibleControlEvent e) {
+//				e.detail = ACC.STATE_NORMAL | ACC.STATE_SELECTABLE
+//					| ACC.STATE_SELECTED | ACC.STATE_FOCUSED
+//					| ACC.STATE_FOCUSABLE;
+//			}
+//		});
+//
+//		addListener(SWT.Selection, new Listener() {
+//
+//			public void handleEvent(Event event) {
+//				if (isFocusControl()) {
+//					accessible.setFocus(ACC.CHILDID_SELF);
+//				}
+//			}
+//		});
+//
+//		addListener(SWT.FocusIn, new Listener() {
+//
+//			public void handleEvent(Event event) {
+//				accessible.setFocus(ACC.CHILDID_SELF);
+//			}
+//		});
 	}
 }

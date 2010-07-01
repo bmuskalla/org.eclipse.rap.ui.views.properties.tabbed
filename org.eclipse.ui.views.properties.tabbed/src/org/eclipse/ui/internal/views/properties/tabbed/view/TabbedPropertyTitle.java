@@ -24,6 +24,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.IFormColors;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
@@ -35,7 +36,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
  * @author Anthony Hunter
  */
 public class TabbedPropertyTitle
-	extends Composite {
+	extends Canvas {
 
 	private CLabel label;
 
@@ -88,16 +89,16 @@ public class TabbedPropertyTitle
 			FontData[] fontData = JFaceResources.getFontRegistry().getBold(
 					JFaceResources.DEFAULT_FONT).getFontData();
 			/* title font is 2pt larger than that used in the tabs. */  
-			fontData[0].setHeight(fontData[0].getHeight() + 2);
-			JFaceResources.getFontRegistry().put(TITLE_FONT, fontData);
+			FontData newFontData = new FontData(fontData[0].getName(), fontData[0].getHeight() + 2, fontData[0].getStyle());
+			JFaceResources.getFontRegistry().put(TITLE_FONT, new FontData[] { newFontData });
 		}
 		font = JFaceResources.getFont(TITLE_FONT);
 		
 		label = factory.createCLabel(this, BLANK);
-		label.setBackground(new Color[] {
-				factory.getColors().getColor(IFormColors.H_GRADIENT_END),
-				factory.getColors().getColor(IFormColors.H_GRADIENT_START) },
-				new int[] { 100 }, true);
+//		label.setBackground(new Color[] {
+//				factory.getColors().getColor(IFormColors.H_GRADIENT_END),
+//				factory.getColors().getColor(IFormColors.H_GRADIENT_START) },
+//				new int[] { 100 }, true);
 		label.setFont(font);
 		label.setForeground(factory.getColors().getColor(IFormColors.TITLE));
 		FormData data = new FormData();
@@ -118,10 +119,10 @@ public class TabbedPropertyTitle
 	 */
 	protected void drawTitleBackground(PaintEvent e) {
 		Rectangle bounds = getClientArea();
-		label.setBackground(new Color[] {
-				factory.getColors().getColor(IFormColors.H_GRADIENT_END),
-				factory.getColors().getColor(IFormColors.H_GRADIENT_START) },
-				new int[] { 100 }, true);
+//		label.setBackground(new Color[] {
+//				factory.getColors().getColor(IFormColors.H_GRADIENT_END),
+//				factory.getColors().getColor(IFormColors.H_GRADIENT_START) },
+//				new int[] { 100 }, true);
 		Color bg = factory.getColors().getColor(IFormColors.H_GRADIENT_END);
 		Color gbg = factory.getColors().getColor(IFormColors.H_GRADIENT_START);
 		GC gc = e.gc;
