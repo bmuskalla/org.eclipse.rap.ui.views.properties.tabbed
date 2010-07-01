@@ -82,7 +82,7 @@ public class TabbedPropertySheetWidgetFactory
 
     public Composite createComposite(Composite parent, int style) {
         Composite c = super.createComposite(parent, style);
-        paintBordersFor(c);
+//        paintBordersFor(c);
         return c;
     }
 
@@ -103,7 +103,7 @@ public class TabbedPropertySheetWidgetFactory
     public Composite createPlainComposite(Composite parent, int style) {
         Composite c = super.createComposite(parent, style);
         c.setBackground(parent.getBackground());
-        paintBordersFor(c);
+//        paintBordersFor(c);
         return c;
     }
 

@@ -34,14 +34,14 @@ import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
+//import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.ScrollBar;
+//import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
@@ -350,7 +350,7 @@ public class TabbedPropertySheetPage
 		widgetFactory = new TabbedPropertySheetWidgetFactory();
 		tabbedPropertyComposite = new TabbedPropertyComposite(parent,
 			widgetFactory, hasTitleBar);
-		widgetFactory.paintBordersFor(tabbedPropertyComposite);
+//		widgetFactory.paintBordersFor(tabbedPropertyComposite);
 		tabbedPropertyComposite.setLayout(new FormLayout());
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 0);
@@ -587,23 +587,22 @@ public class TabbedPropertySheetPage
 		tabbedPropertyComposite.getScrolledComposite().setMinSize(
 				currentTabSize);
 
-		ScrollBar verticalScrollBar = tabbedPropertyComposite
-				.getScrolledComposite().getVerticalBar();
-		if (verticalScrollBar != null) {
-			Rectangle clientArea = tabbedPropertyComposite
-					.getScrolledComposite().getClientArea();
-			int increment = clientArea.height - 5;
-			verticalScrollBar.setPageIncrement(increment);
-		}
-
-		ScrollBar horizontalScrollBar = tabbedPropertyComposite
-				.getScrolledComposite().getHorizontalBar();
-		if (horizontalScrollBar != null) {
-			Rectangle clientArea = tabbedPropertyComposite
-					.getScrolledComposite().getClientArea();
-			int increment = clientArea.width - 5;
-			horizontalScrollBar.setPageIncrement(increment);
-		}
+//		ScrollBar verticalScrollBar = tabbedPropertyComposite
+//				.getScrolledComposite().getVerticalBar();
+//		if (verticalScrollBar != null) {
+//			Rectangle clientArea = tabbedPropertyComposite
+//					.getScrolledComposite().getClientArea();
+//			int increment = clientArea.height - 5;
+//			verticalScrollBar.setPageIncrement(increment);
+//		}
+//		ScrollBar horizontalScrollBar = tabbedPropertyComposite
+//				.getScrolledComposite().getHorizontalBar();
+//		if (horizontalScrollBar != null) {
+//			Rectangle clientArea = tabbedPropertyComposite
+//					.getScrolledComposite().getClientArea();
+//			int increment = clientArea.width - 5;
+//			horizontalScrollBar.setPageIncrement(increment);
+//		}
 	}
 
 	private void disposeTabs(Collection tabs) {
